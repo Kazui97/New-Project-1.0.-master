@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rotar : MonoBehaviour
 {
     public bool rotar = false;
+    
 
     public void OnMouseDown()
     {
