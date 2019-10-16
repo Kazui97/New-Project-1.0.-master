@@ -12,9 +12,7 @@ public class Juego : MonoBehaviour
     public Material hombre;
     public Material hombre1;
     public Material palomo1;
-    
-    public GameObject selecio1;
-    public GameObject selecio2;
+    public bool mostrando;
     public static  int[] array =new int[8];
     
     public bool rotar = false;
@@ -24,14 +22,9 @@ public class Juego : MonoBehaviour
     {
         rotar = true;
         Invoke( "rotara", 5);
-        if ( selecio1.gameObject.GetComponent<Juego>().buey == pruebabloques.GetComponent<Juego>().buey)
-        {
-            Destroy(selecio1);
-            Destroy(selecio2);
-        }
-        
     }
     
+   
 
     void Awake()
     {
@@ -39,35 +32,40 @@ public class Juego : MonoBehaviour
     }
     void Start()
     {
-        
-        //int carasrandom = Random.Range(0,5);
-        switch (caritas)
+        while (true)
         {
-            case caras.buey:
-            pruebabloques.GetComponent<Renderer>().material = buey;
-            
-            break;
-            case caras.dragon:
-            pruebabloques.GetComponent<Renderer>().material = dragon;
-            break;
-            case caras.palomo:
-            pruebabloques.GetComponent<Renderer>().material = palomo;
-            break;
-            case caras.cabeza:
-            pruebabloques.GetComponent<Renderer>().material = cabeza;
-            break;
-            case caras.hombre:
-            pruebabloques.GetComponent<Renderer>().material = hombre;
-            break;
-            case caras.hombre1:
-            pruebabloques.GetComponent<Renderer>().material = hombre1;
-            break;
-            case caras.palomo1:
-            pruebabloques.GetComponent<Renderer>().material = palomo1;
-            break;
-            default:
-            break;
+            switch (caritas)
+            {
+                case caras.buey:
+                    if (pruebabloques.GetComponent<Juego>().buey == pruebabloques.GetComponent<Juego>().buey)
+                    {
+                        Debug.Log("lol");
+                    }
+                    break;
+                case caras.dragon:
+                    pruebabloques.GetComponent<Renderer>().material = dragon;
+                    break;
+                case caras.palomo:
+                    pruebabloques.GetComponent<Renderer>().material = palomo;
+                    break;
+                case caras.cabeza:
+                    pruebabloques.GetComponent<Renderer>().material = cabeza;
+                    break;
+                case caras.hombre:
+                    pruebabloques.GetComponent<Renderer>().material = hombre;
+                    break;
+                case caras.hombre1:
+                    pruebabloques.GetComponent<Renderer>().material = hombre1;
+                    break;
+                case caras.palomo1:
+                    pruebabloques.GetComponent<Renderer>().material = palomo1;
+                    break;
+                default:
+                    break;
+            }
         }
+        //int carasrandom = Random.Range(0,5);
+       
     }
 
    
