@@ -5,94 +5,52 @@ using UnityEngine;
 public class Juego : MonoBehaviour
 {
     public GameObject pruebabloques;
-    public Material buey;
-    public Material dragon;
-    public Material palomo;
-    public Material cabeza;
-    public Material hombre;
-    public Material hombre1;
-    public Material palomo1;
-    public bool mostrando;
-    public static  int[] array =new int[8];
-    
+    List<GameObject> bloques;
+    public Material [] mate = new Material [16];
+    int cont = 0;
     public bool rotar = false;
     
 
     public void OnMouseDown()
     {
-        rotar = true;
-        Invoke( "rotara", 5);
+        
     }
     
-   
 
-    void Awake()
+
+    public static void shuffle(Material [] mat)
     {
-        caritas = (caras)Random.Range(0,6);
+        int n = mat.Length;
+        while (n > 1)
+        {
+            n--;
+            int k = Random.Range(0,n+1);
+            Material cambiador= mat[k];
+            mat[k] = mat[n];
+            mat[n] = cambiador;
+        }
     }
+
+
+
+
     void Start()
     {
-        while (true)
-        {
-            switch (caritas)
-            {
-                case caras.buey:
-                    if (pruebabloques.GetComponent<Juego>().buey == pruebabloques.GetComponent<Juego>().buey)
-                    {
-                        Debug.Log("lol");
-                    }
-                    break;
-                case caras.dragon:
-                    pruebabloques.GetComponent<Renderer>().material = dragon;
-                    break;
-                case caras.palomo:
-                    pruebabloques.GetComponent<Renderer>().material = palomo;
-                    break;
-                case caras.cabeza:
-                    pruebabloques.GetComponent<Renderer>().material = cabeza;
-                    break;
-                case caras.hombre:
-                    pruebabloques.GetComponent<Renderer>().material = hombre;
-                    break;
-                case caras.hombre1:
-                    pruebabloques.GetComponent<Renderer>().material = hombre1;
-                    break;
-                case caras.palomo1:
-                    pruebabloques.GetComponent<Renderer>().material = palomo1;
-                    break;
-                default:
-                    break;
-            }
-        }
-        //int carasrandom = Random.Range(0,5);
-       
+        shuffle(mate);
+       bloques = new List<GameObject>();
+       foreach (Rotar bloque in FindObjectsOfType<Rotar>())
+       {
+           bloques.Add(bloque.gameObject);
+           bloques[cont].GetComponent<Renderer>().material = mate[cont];
+           cont += 1;
+       }
     }
 
    
     void Update()
     {
-        if (rotar)
-        {
-            transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.rotation.eulerAngles, Vector3.up *180, Time.deltaTime));
-        }
-        else
-        {
-            transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.rotation.eulerAngles, Vector3.zero, Time.deltaTime));
-        }
+        
     }
-    public void rotara()
-    {
-        rotar = false;
-    }
-    public enum caras
-    {
-        buey,
-        dragon,
-        palomo,
-        cabeza,
-        hombre,
-        hombre1,
-        palomo1
-    }
-    public caras caritas;
+   
+    
 }

@@ -5,12 +5,18 @@ using UnityEngine;
 public class Rotar : MonoBehaviour
 {
     public bool rotar = false;
-    
+   
 
     public void OnMouseDown()
     {
         rotar = true;
         Invoke( "rotara", 5);
+
+        
+        
+
+
+
     }
         void Start()
     {

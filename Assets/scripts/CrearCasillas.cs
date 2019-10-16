@@ -10,7 +10,7 @@ public class CrearCasillas : MonoBehaviour
    
     public List<GameObject> bloques = new List<GameObject>();
 
-    public Material[] material;
+    public Material[] material = new Material[16];
     public int contadorclik;
     public Text clicks;
 
@@ -30,25 +30,66 @@ public class CrearCasillas : MonoBehaviour
                 GameObject bloquestemp = Instantiate(Bloque, new Vector3(x, i, 0), Quaternion.identity);
                 bloques.Add(bloquestemp);
 
-
+                
 
                 bloquestemp.GetComponent<Bloque>().posicionoriginal = new Vector3(x, i, 0);
                 bloquestemp.GetComponent<Bloque>().NumCarta = cont;
                 cont++;
             }
         }
-        Asignarmaterial();
-        Randombloques();
+        //Asignarmaterial();
+       // Randombloques();
+       shuffle(material);
     }
 
-    void Asignarmaterial ()
+   /*  void Asignarmaterial ()
     {
         for (int i = 0;i < bloques.Count; i++)
         {
             bloques[i].GetComponent<Bloque>().PonerColor(material[i / 2]);
         }
+    }*/
+    public static void shuffle(Material[]mat)
+    {
+        int n = mat.Length;
+        while (n > 1)
+        {
+            n--;
+            int k = Random.Range(0,n+1);
+            Material cambiador = mat[k];
+            mat[k] = mat[n];
+            mat[n] = cambiador;
+        }
     }
-    void Randombloques()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+   /*  void Randombloques()
     {
         int aleatorio;
         for (int i = 0; i < bloques.Count; i++)
@@ -61,7 +102,7 @@ public class CrearCasillas : MonoBehaviour
             bloques[i].GetComponent<Bloque>().posicionoriginal = bloques[i].transform.position;
             bloques[aleatorio].GetComponent<Bloque>().posicionoriginal = bloques[aleatorio].transform.position;
         }
-    }
+    }*/
 
   /* public void hacercli()
     {
