@@ -67,12 +67,17 @@ public class Juego : MonoBehaviour
                     
                     Debug.Log("entre aqui >:v"); 
                 }
-                else if (bloque2 == null)
+                else if (bloque1 != null && bloque2 == null)
                 {
                     bloque2 = hit.transform.gameObject;
                     Debug.Log("entre");
+
+                    if (bloque1 != bloque2 && bloque1.GetComponent<Renderer>().material.ToString() == bloque2.GetComponent<Renderer>().material.ToString())
+                    {
+                        
+                    }
                 }
-                else if ()
+               
             }
         }
 
