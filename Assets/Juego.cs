@@ -9,8 +9,8 @@ public class Juego : MonoBehaviour
     public Material [] mate = new Material [16];
     int cont = 0;
     public bool rotar = false;
-    public GameObject bloque1;
-    public GameObject bloque2;
+     GameObject bloque1;
+     GameObject bloque2;
     
 
     public void OnMouseDown()
@@ -48,30 +48,38 @@ public class Juego : MonoBehaviour
        }
 
         cont = bloques.Count;
-        Debug.Log(cont);
+       // Debug.Log(cont);
     }
 
    
     void Update()
     {
-
+        RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, Mathf.Infinity))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("ledi raycast");
+                //Debug.Log("ledi raycast");
                 if (bloque1 == null)
                 {
-                    bloque1 = gameObject.GetComponent<Juego>().bloques.Equals(mat[].ToString);
-                    Debug.Log("entre aqui >:v");
+                    bloque1 = hit.transform.gameObject;
+                    
+                    Debug.Log("entre aqui >:v"); 
                 }
+                else if (bloque2 == null)
+                {
+                    bloque2 = hit.transform.gameObject;
+                    Debug.Log("entre");
+                }
+                else if ()
             }
         }
 
     }
   /* public bool Compararbloque(GameObject bloque1 , GameObject bloque2 )
     {
+        https://www.freepik.es/iconos-gratis/japon-demonio_755187.htm
         bool resultado;
         if(bloque1.GetComponent<Juego>().bloques.ToString == bloque2.GetComponent<Juego>().bloques.ToString)
         {
