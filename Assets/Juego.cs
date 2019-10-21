@@ -8,18 +8,49 @@ public class Juego : MonoBehaviour
     List<GameObject> bloques;
     public Material [] mate = new Material [16];
     int cont = 0;
-    public bool rotar = false;
-     GameObject bloque1;
-     GameObject bloque2;
-    
+    public GameObject bloque1;
+    public GameObject bloque2;
+    public Rotar Rotar;
 
-    public void OnMouseDown()
+    public void CompararYmas()
     {
-        
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+           
+            if (Input.GetMouseButtonDown(0))
+            {
+               
+                if (bloque1 == null)
+                {                   
+                    bloque1 = hit.transform.gameObject;                    
+                   
+                }
+                else if (bloque1 != null && bloque2 == null)
+                {                  
+                    bloque2 = hit.transform.gameObject;
+                    Debug.Log("entre");
+
+                    if (bloque1 != bloque2 && bloque1.GetComponent<Renderer>().material.ToString() == bloque2.GetComponent<Renderer>().material.ToString())
+                    {
+                        Debug.Log("soy igual");
+                        Destroy(bloque1.gameObject);
+                        Destroy(bloque2.gameObject);
+                    }
+                    else if (bloque1 != null && bloque2 != null)
+                    {
+                        Debug.Log("soy null");
+                        bloque1 = null;
+                        bloque2 = null;
+                    }
+                }
+               
+
+            }
+        }
     }
     
-
-
     public static void shuffle(Material [] mat)
     {
         int n = mat.Length;
@@ -33,9 +64,6 @@ public class Juego : MonoBehaviour
         }
     }
 
-
-
-
     void Start()
     {
         shuffle(mate);
@@ -47,41 +75,15 @@ public class Juego : MonoBehaviour
            cont += 1;
        }
 
-        cont = bloques.Count;
+       // cont = bloques.Count;
        // Debug.Log(cont);
     }
-
-   
+ 
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                //Debug.Log("ledi raycast");
-                if (bloque1 == null)
-                {
-                    bloque1 = hit.transform.gameObject;
-                    
-                    Debug.Log("entre aqui >:v"); 
-                }
-                else if (bloque1 != null && bloque2 == null)
-                {
-                    bloque2 = hit.transform.gameObject;
-                    Debug.Log("entre");
-
-                    if (bloque1 != bloque2 && bloque1.GetComponent<Renderer>().material.ToString() == bloque2.GetComponent<Renderer>().material.ToString())
-                    {
-                        
-                    }
-                }
-               
-            }
-        }
-
+        CompararYmas();    
     }
+
   /* public bool Compararbloque(GameObject bloque1 , GameObject bloque2 )
     {
         https://www.freepik.es/iconos-gratis/japon-demonio_755187.htm

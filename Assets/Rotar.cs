@@ -5,24 +5,20 @@ using UnityEngine;
 public class Rotar : MonoBehaviour
 {
     public bool rotar = false;
-   
+
 
     public void OnMouseDown()
     {
         rotar = true;
-        Invoke( "rotara", 5);
-
+        Invoke("Rotara", 3);
         
-        
-
-
-
     }
-        void Start()
+    
+    void Start()
     {
         
     }
-
+   
     
     void Update()
     {
@@ -35,8 +31,9 @@ public class Rotar : MonoBehaviour
             transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.rotation.eulerAngles, Vector3.zero, Time.deltaTime));
         }
     }
-    public void rotara()
+    public void Rotara()
     {
+       
         rotar = false;
     }
 }
