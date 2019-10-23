@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Rotar : MonoBehaviour
 {
-    public bool rotar = false;
+    /*public bool rotar = false;
 
 
     public void OnMouseDown()
@@ -35,5 +35,5 @@ public class Rotar : MonoBehaviour
     {
        
         rotar = false;
-    }
+    }*/
 }
