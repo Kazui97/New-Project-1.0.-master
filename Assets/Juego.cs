@@ -27,11 +27,13 @@ public class Juego : MonoBehaviour
            
             if (Input.GetMouseButtonDown(0))
             {
-                contadorclick++;
-                ActualizaUI();
+               
+                
                 if (bloque1 == null)
                 {                   
                     bloque1 = hit.transform.gameObject;
+                    contadorclick++;
+                    ActualizaUI();
                     
                 }
                 else if (bloque1 != null && bloque2 == null)
@@ -51,10 +53,13 @@ public class Juego : MonoBehaviour
                         bloque1 = null;
                         bloque2 = null;
                         Invoke("Rotara", 3);
+
                     }
+
+                    
                 }
                
-
+                
             }
         }
     }
@@ -116,12 +121,12 @@ public class Juego : MonoBehaviour
     {
         rotar = false;
     }
-    public void TiempoContado()
+    public void TiempoContado()                                  // tiempo
     {
         tiempo = tiempo + 1 * Time.deltaTime;
         tiempocont.text = "" + tiempo.ToString("f0");
     }
-    public void ActualizaUI()
+    public void ActualizaUI()                                   // click contados 
     {
         contadorintentos.text = "intentos "  +  contadorclick;
     }

@@ -14,5 +14,9 @@ public class CambioScene : MonoBehaviour
     {
         Application.Quit();
     }
+    public void Reinicio(string Nombre)
+    {
+        SceneManager.LoadScene(Nombre);
+    }
 
 }
