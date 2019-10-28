@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Juego : MonoBehaviour
 {
     public GameObject pruebabloques;
+    
     List<GameObject> bloques;
     public Material [] mate = new Material [16];
     int cont = 0;
