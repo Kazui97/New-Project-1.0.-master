@@ -18,6 +18,7 @@ public class Juego : MonoBehaviour
     public Text tiempocont;
     public float tiempo;
     public Text contadorintentos;
+    
   
     public void CompararYmas()
     {
